@@ -1,0 +1,42 @@
+{
+  "name": "storybook-app",
+  "version": "0.0.0",
+  "description": "Storybook App",
+  "author": "William Will @willwill96",
+  "homepage": "https://github.com/willwill96/mono-repo-tools",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "ssh",
+    "url": "git@github.com:willwill96/mono-repo-tools.git"
+  },
+  "files": [
+    "/dist"
+  ],
+  "bugs": "https://github.com/willwill96/mono-repo-tools/issues",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-docs": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/api": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook-package-context-loader": "^0.0.0",
+    "webpack": "^5.74.0"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}
