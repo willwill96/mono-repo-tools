@@ -12,7 +12,8 @@
   },
   "scripts": {
     "prebuild": "rm -rf dist/",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "files": [
     "/dist"
@@ -20,8 +21,10 @@
   "bugs": "https://github.com/willwill96/mono-repo-tools/issues",
   "types": "dist/index.d.ts",
   "devDependencies": {
+    "@types/jest": "^29.0.0",
     "@types/react": "^18.0.18",
-    "@types/react-dom": "^18.0.6"
+    "@types/react-dom": "^18.0.6",
+    "ts-jest": "^28.0.8"
   },
   "dependencies": {
     "typescript": "^4.8.2"

@@ -25,8 +25,6 @@
   },
   "devDependencies": {
     "@oclif/test": "^2",
-    "@types/chai": "^4",
-    "@types/mocha": "^9.0.0",
     "@types/node": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "chai": "^4",
@@ -57,7 +55,7 @@
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "npm run lint",
     "prepack": "npm run build && oclif manifest && oclif readme",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "test": "jest",
     "version": "oclif readme && git add README.md"
   },
   "engines": {
