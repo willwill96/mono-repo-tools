@@ -1,5 +1,7 @@
 import ts from "typescript";
 import { getRequireString } from "./get-require-string";
+import type { LoaderOptions, WebpackLoaderContext } from "./types";
+
 function nonEmpty(child: ts.Node) {
   return Boolean(child.getText());
 }
@@ -7,8 +9,14 @@ function nonEmpty(child: ts.Node) {
 const importDeclaration =
   'var withPackageContext = require("storybook-package-context-loader/dist/with-package-context").withPackageContext\n';
 
-function injectDefaultExport(source: string, fileLocation: string) {
-  const requireString = getRequireString(fileLocation)
+interface InjectFnOptions {
+  source: string
+  fileLocation: string
+  options: LoaderOptions
+}
+
+function injectDefaultExport({source, fileLocation, options}:InjectFnOptions) {
+  const requireString = getRequireString(fileLocation,options)
   if (!requireString) return source
   return importDeclaration
     .concat(source)
@@ -18,15 +26,13 @@ function injectDefaultExport(source: string, fileLocation: string) {
 }
 
 function injectExistingDefaultExport(
-  source: string,
-  fileLocation: string,
-  defaultExport: ts.Node
+  {source, fileLocation, exportDefinition, options}:InjectFnOptions & {exportDefinition: ts.Node}
 ) {
-  const requireString = getRequireString(fileLocation)
+  const requireString = getRequireString(fileLocation, options)
   if (!requireString) return source
   let newSource = source;
-  const start = defaultExport.getStart();
-  const end = defaultExport.getEnd();
+  const start = exportDefinition.getStart();
+  const end = exportDefinition.getEnd();
 
   newSource =
     newSource.slice(0, end) +
@@ -39,9 +45,11 @@ function injectExistingDefaultExport(
   return importDeclaration.concat(newSource);
 }
 
-function transform(source: string) {
+
+
+function transform(this: WebpackLoaderContext, source: string) {
   try {
-    // @ts-ignore This comes from webpack context
+    // @ts-ignor This comes from webpack context
     const fileLocation = this.resourcePath;
     const file = ts.createSourceFile(
       "temp.ts",
@@ -57,9 +65,10 @@ function transform(source: string) {
         (f) =>
           ts.isExportAssignment(f) && f.getChildren()[1].getText() === "default"
       );
-    if (!defaultExport) return injectDefaultExport(source, fileLocation);
+    const options = this.getOptions()
+    if (!defaultExport) return injectDefaultExport({source, fileLocation, options});
     const exportDefinition = defaultExport.getChildren()[2];
-    return injectExistingDefaultExport(source, fileLocation, exportDefinition);
+    return injectExistingDefaultExport({source, fileLocation, options, exportDefinition});
   } catch {
     console.log(
       "[storybook-package-context-loader]: Something went wrong parsing the package. Not modifying source"

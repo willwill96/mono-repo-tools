@@ -15,10 +15,14 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "@storybook/addons": "^6.5.10",
+    "@storybook/components": "^6.5.10",
+    "@storybook/theming": "^6.5.10",
     "@types/jest": "^29.0.0",
     "eslint": "^8.23.0",
     "eslint-config-custom": "*",
     "jest": "^28.1.3",
+    "markdown-to-jsx": "^7.1.7",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.8",
     "turbo": "latest",

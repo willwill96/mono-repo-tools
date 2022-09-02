@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Webpack loader to automatically inject storybook parameters to contextualize containing package",
   "author": "William Will @willwill96",
-  "homepage": "https://github.com/willwill96/mono-repo-tools",
+  "homepage": "https://github.com/willwill96/mono-repo-tools/packages/storybook-package-context-loader",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": {
@@ -13,6 +13,7 @@
   "scripts": {
     "prebuild": "rm -rf dist/",
     "build": "tsc",
+    "lint": "eslint . --ext .ts,.tsx --config .eslintrc.js",
     "test": "jest"
   },
   "files": [

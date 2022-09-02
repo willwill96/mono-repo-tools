@@ -1,6 +1,6 @@
 # storybook-package-context-loader
 
-Webpack loader to automatically inject storybook parameters to contextualize the containing package for `.stories.tsx` files
+Webpack loader for mono-repos utilizing [Storybookjs](https://storybook.js.org/) to automatically inject storybook parameters to contextualize the containing package for `.stories.tsx` files
 
 Using this webpack loader on your stories will add a storybook parameter `packageContext` which has the following information:
 
@@ -43,4 +43,23 @@ export const parameters = {
     page: DocsPage,
   },
 };
+```
+
+## Configuration
+You can optionally disable the loader from including any of the parsed files by passing options to the loader:
+```
+  webpackFinal: (config) => {
+    config.module.rules.push({
+      test: /\.stories\.tsx$/,
+      use: {
+        loader: require.resolve("storybook-package-context-loader"),
+        options: {
+          enableReadme: false,
+          enablePkgJson: false,
+          enableChangelog: false
+        }
+      },
+    });
+    return config;
+  },
 ```
