@@ -8,12 +8,12 @@ const importDeclaration =
   'var withPackageContext = require("storybook-package-context-loader/dist/with-package-context").withPackageContext\n';
 
 function injectDefaultExport(source: string, fileLocation: string) {
+  const requireString = getRequireString(fileLocation)
+  if (!requireString) return source
   return importDeclaration
     .concat(source)
     .concat(
-      `\nexport default withPackageContext({}, ${getRequireString(
-        fileLocation
-      )})`
+      `\nexport default withPackageContext({}, ${requireString})`
     );
 }
 
@@ -22,13 +22,15 @@ function injectExistingDefaultExport(
   fileLocation: string,
   defaultExport: ts.Node
 ) {
+  const requireString = getRequireString(fileLocation)
+  if (!requireString) return source
   let newSource = source;
   const start = defaultExport.getStart();
   const end = defaultExport.getEnd();
 
   newSource =
     newSource.slice(0, end) +
-    `, ${getRequireString(fileLocation)})` +
+    `, ${requireString})` +
     newSource.slice(end);
 
   newSource =
