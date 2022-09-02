@@ -1,6 +1,7 @@
 {
   "name": "storybook-app",
   "version": "0.0.0",
+  "private": true,
   "description": "Storybook App",
   "author": "William Will @willwill96",
   "homepage": "https://github.com/willwill96/mono-repo-tools",
