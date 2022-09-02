@@ -9,7 +9,10 @@
   "homepage": "https://github.com/willwill96/mono-repo-tools",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "willwill96/mono-repo-tools",
+  "repository": {
+    "type": "ssh",
+    "url": "git@github.com:willwill96/mono-repo-tools.git"
+  },
   "files": [
     "/bin",
     "/dist",

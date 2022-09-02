@@ -1,0 +1,17 @@
+{
+    "name": "monorepo-cli",
+    "version": "0.0.0",
+    "description": "CLI tool for building & maintaining monorepos",
+    "author": "William Will @willwill96",
+    "homepage": "https://github.com/willwill96/mono-repo-tools",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "repository": {
+        "type": "ssh",
+        "url": "git@github.com:willwill96/mono-repo-tools.git"
+    },
+    "files": ["/dist"],
+    "bugs": "https://github.com/willwill96/mono-repo-tools/issues",
+    "types": "dist/index.d.ts"
+}
+  
