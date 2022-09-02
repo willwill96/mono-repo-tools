@@ -15,9 +15,11 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "eslint": "^8.23.0",
     "eslint-config-custom": "*",
     "prettier": "^2.7.1",
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "^4.8.2"
   },
   "engines": {
     "npm": ">=7.0.0",
