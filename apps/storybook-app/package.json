@@ -30,6 +30,8 @@
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
+    "eslint": "^8.23.0",
+    "eslint-config-custom": "^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook-package-context-loader": "^0.0.0",
@@ -37,6 +39,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint .storybook/** --ext .js --config .eslintrc.js"
   }
 }
