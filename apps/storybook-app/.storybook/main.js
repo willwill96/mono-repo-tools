@@ -14,7 +14,7 @@ module.exports = {
   },
   webpackFinal: (config) => {
     config.module.rules.push({
-      test: /\.stories\.tsx$/,
+      test: /\.stories\.(t|j)sx$/,
       use: [require.resolve("storybook-package-context-loader")],
     });
     return config;

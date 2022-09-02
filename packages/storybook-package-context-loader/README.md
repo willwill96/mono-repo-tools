@@ -10,10 +10,8 @@ Using this webpack loader on your stories will add a storybook parameter `packag
 
 # Usage
 
-Note: this loader will only work typescript files (sorry javascript users)
-
-
 ## Installation
+
 ```
 
 npm install storybook-package-context-loader
@@ -21,12 +19,13 @@ npm install storybook-package-context-loader
 ```
 
 ## Add webpack loader to storybook main.js file
+
 Add the webpack loader to your `.storybook/main.js` file under `webpackFinal`:
 
 ```
   webpackFinal: (config) => {
     config.module.rules.push({
-      test: /\.stories\.tsx$/,
+      test: /\.stories\.(t|j)sx$/,
       use: [require.resolve("storybook-package-context-loader")],
     });
     return config;
@@ -34,6 +33,7 @@ Add the webpack loader to your `.storybook/main.js` file under `webpackFinal`:
 ```
 
 ## Add Base Docs page to preview.js
+
 This package bundles along a lightweight react component to display package information on the `Docs` page in storybook using the injected parameter. In order to take advantage, replace your docs page in the `.storybook/preview.js` file:
 
 ```
@@ -46,7 +46,9 @@ export const parameters = {
 ```
 
 ## Configuration
+
 You can optionally disable the loader from including any of the parsed files by passing options to the loader:
+
 ```
   webpackFinal: (config) => {
     config.module.rules.push({
