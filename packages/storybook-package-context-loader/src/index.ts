@@ -5,7 +5,7 @@ function nonEmpty(child: ts.Node) {
 }
 
 const importDeclaration =
-  'var withPackageContext = require("storybook-package-context-loader/with-package-context").withPackageContext\n';
+  'var withPackageContext = require("storybook-package-context-loader/dist/with-package-context").withPackageContext\n';
 
 function injectDefaultExport(source: string, fileLocation: string) {
   return importDeclaration

@@ -21,10 +21,15 @@
   "bugs": "https://github.com/willwill96/mono-repo-tools/issues",
   "types": "dist/index.d.ts",
   "devDependencies": {
+    "@storybook/addon-docs": "^6.5.10",
     "@types/jest": "^29.0.0",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "ts-jest": "^28.0.8"
+  },
+  "peerDependencies": {
+    "@storybook/addon-docs": ">=6",
+    "react": ">=16"
   },
   "dependencies": {
     "typescript": "^4.8.2"
