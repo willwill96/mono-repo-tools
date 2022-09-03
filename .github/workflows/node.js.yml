@@ -25,7 +25,7 @@ jobs:
     - run: npm i -g gh-pages
     - run: git config user.name github-action
     - run: git config user.email github-actions@github.com
-    - run: git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+    - run: git remote set-url origin https://x-access-token:$(echo GITHUB_TOKEN | sed -e 's/^[[:space:]]*//)@github.com/$GITHUB_REPOSITORY.git
     - run: npx gh-pages -d apps/storybook-app/storybook-static
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
