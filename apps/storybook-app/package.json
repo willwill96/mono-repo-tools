@@ -35,7 +35,7 @@
     "eslint-config-custom": "^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook-package-context-loader": "^0.0.0",
+    "storybook-package-context-loader": "^1.0.0",
     "webpack": "^5.74.0"
   },
   "scripts": {

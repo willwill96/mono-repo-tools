@@ -15,6 +15,7 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.24.4",
     "@storybook/addons": "^6.5.10",
     "@storybook/components": "^6.5.10",
     "@storybook/theming": "^6.5.10",

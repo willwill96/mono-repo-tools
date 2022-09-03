@@ -22,7 +22,7 @@ function getRootPackageDirectory(
 export function getRequireString(fileLocation: string, options: LoaderOptions) {
   const topLevelDirectory = execSync("git rev-parse --show-toplevel")
     .toString()
-    .replaceAll("\n", "");
+    .replace(/\n/g, "");
   const rootPackageDirectory = getRootPackageDirectory(
     path.resolve(topLevelDirectory),
     path.resolve(fileLocation)

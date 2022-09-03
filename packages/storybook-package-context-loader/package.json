@@ -1,6 +1,6 @@
 {
   "name": "storybook-package-context-loader",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Webpack loader to automatically inject storybook parameters to contextualize containing package",
   "author": "William Will @willwill96",
   "homepage": "https://github.com/willwill96/mono-repo-tools/packages/storybook-package-context-loader",
