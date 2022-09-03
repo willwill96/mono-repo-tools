@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      env:
+        token: {{ secrets.GITHUB_TOKEN }}
     - name: Use Node.js 16
       uses: actions/setup-node@v3
       with:
@@ -23,5 +25,4 @@ jobs:
     - run: npm i -g gh-pages
     - run: git config user.name github-action
     - run: git config user.email github-actions@github.com
-    - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
     - run: npx gh-pages -d apps/storybook-app/storybook-static
