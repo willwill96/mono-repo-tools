@@ -23,6 +23,6 @@ jobs:
     - run: npm run build
     - run: npm run build-storybook --workspace storybook-app
     - run: npm i -g gh-pages
-    - run: git config user.name "Circle CI Bot"
-    - run: git config user.email mono-repo-tools+github-actions@users.noreply.github.com
+    - run: git config user.name github-action
+    - run: git config user.email github-actions@github.com
     - run: npx gh-pages -d apps/storybook-app/storybook-static
