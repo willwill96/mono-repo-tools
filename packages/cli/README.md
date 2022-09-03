@@ -9,36 +9,33 @@ oclif example Hello World CLI
 [![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
+* [oclif-hello-world](#oclif-hello-world)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g monorepo-cli
 $ mono COMMAND
 running command...
 $ mono (--version)
-monorepo-cli/0.0.0 linux-x64 node-v16.15.1
+monorepo-cli/0.0.0 linux-x64 node-v16.17.0
 $ mono --help [COMMAND]
 USAGE
   $ mono COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-
-- [`mono hello PERSON`](#mono-hello-person)
-- [`mono hello:world`](#mono-helloworld)
-- [`mono help [COMMAND]`](#mono-help-command)
+* [`mono hello PERSON`](#mono-hello-person)
+* [`mono hello:world`](#mono-helloworld)
+* [`mono help [COMMAND]`](#mono-help-command)
 
 ## `mono hello PERSON`
 
@@ -101,5 +98,4 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
-
 <!-- commandsstop -->

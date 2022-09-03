@@ -1,6 +1,7 @@
 {
   "name": "monorepo-cli",
   "version": "0.0.0",
+  "private": true,
   "description": "CLI tool for building & maintaining monorepos",
   "author": "William Will @willwill96",
   "bin": {
