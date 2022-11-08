@@ -1,5 +1,11 @@
 # storybook-package-context-loader
 
+## 1.0.3
+
+### Patch Changes
+
+- 1578b15: Fixup dependencies4
+
 ## 1.0.2
 
 ### Patch Changes
