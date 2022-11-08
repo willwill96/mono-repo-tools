@@ -9,14 +9,16 @@ oclif example Hello World CLI
 [![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
 
 <!-- toc -->
-* [oclif-hello-world](#oclif-hello-world)
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [oclif-hello-world](#oclif-hello-world)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g monorepo-cli
 $ mono COMMAND
@@ -28,14 +30,16 @@ USAGE
   $ mono COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`mono hello PERSON`](#mono-hello-person)
-* [`mono hello:world`](#mono-helloworld)
-* [`mono help [COMMAND]`](#mono-help-command)
+
+- [`mono hello PERSON`](#mono-hello-person)
+- [`mono hello:world`](#mono-helloworld)
+- [`mono help [COMMAND]`](#mono-help-command)
 
 ## `mono hello PERSON`
 
@@ -98,4 +102,5 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
+
 <!-- commandsstop -->

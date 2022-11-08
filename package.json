@@ -33,5 +33,12 @@
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "npm@8.11.0"
+  "packageManager": "npm@8.11.0",
+  "dependencies": {
+    "@fluentui/react-avatar": "^9.2.4",
+    "@fluentui/react-button": "^9.1.6",
+    "@fluentui/react-divider": "^9.1.2",
+    "@fluentui/react-image": "^9.0.9",
+    "@fluentui/react-spinner": "^9.0.8"
+  }
 }

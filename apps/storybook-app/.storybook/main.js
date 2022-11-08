@@ -7,16 +7,10 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "storybook-addon-package-shopping-cart"
   ],
   framework: "@storybook/react",
   core: {
     builder: "webpack5",
-  },
-  webpackFinal: (config) => {
-    config.module.rules.push({
-      test: /\.stories\.(t|j)sx$/,
-      use: [require.resolve("storybook-package-context-loader")],
-    });
-    return config;
-  },
+  }
 };
