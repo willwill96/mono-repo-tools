@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-package-shopping-cart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Storybook Package Shopping Cart for Monorepos",
   "author": "William Will @willwill96",
   "homepage": "https://github.com/willwill96/mono-repo-tools",
