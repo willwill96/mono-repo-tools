@@ -1,5 +1,11 @@
 # storybook-addon-package-shopping-cart
 
+## 0.0.5
+
+### Patch Changes
+
+- Add storybook addon keywords
+
 ## 0.0.4
 
 ### Patch Changes
