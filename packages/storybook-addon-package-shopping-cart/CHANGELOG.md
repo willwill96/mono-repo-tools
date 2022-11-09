@@ -1,5 +1,11 @@
 # storybook-addon-package-shopping-cart
 
+## 0.0.6
+
+### Patch Changes
+
+- fix homepage in package.json
+
 ## 0.0.5
 
 ### Patch Changes
