@@ -47,6 +47,8 @@ export const parameters = {
 
 ## Configuration
 
+NOTE: webpack 4 is partially supported by this loader, however configuration options will not be respected due to differences in the v4 vs v5 APIs.
+
 You can optionally disable the loader from including any of the parsed files by passing options to the loader:
 
 ```
@@ -62,6 +64,38 @@ You can optionally disable the loader from including any of the parsed files by 
         }
       },
     });
+    return config;
+  },
+```
+
+## Parsing .md files
+
+### Webpack 5
+If you're using storybook with webpack 5, markdown files should be automatically set up to be parsed. 
+
+If for some reason that's not working you can manually configure them as [source assets](https://webpack.js.org/guides/asset-modules/#source-assets) with the following:
+
+```
+  webpackFinal: (config) => {
+    ...
+    config.module.rules.push({
+      test: /\.md$/,
+      type: 'asset/source',
+    })
+    return config;
+  },
+```
+
+### Webpack 4
+If you're using storybook with webpack 4, you'll want to configure markdown files to be parsed via [raw-loader](https://v4.webpack.js.org/loaders/raw-loader/) with the following:
+
+```
+  webpackFinal: (config) => {
+    ...
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader'
+    })
     return config;
   },
 ```

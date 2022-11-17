@@ -6,7 +6,8 @@ export interface LoaderOptions {
 
 export interface WebpackLoaderContext {
   resourcePath: string;
-  getOptions: () => LoaderOptions;
+  // getOptions will be undefined in webpack 4
+  getOptions?: () => LoaderOptions;
 }
 
 export interface PkgJson {

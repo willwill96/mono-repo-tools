@@ -79,7 +79,7 @@ function transform(this: WebpackLoaderContext, source: string) {
         (f) =>
           ts.isExportAssignment(f) && f.getChildren()[1].getText() === "default"
       );
-    const options = this.getOptions();
+    const options = this.getOptions ? this.getOptions() : {};
     if (!defaultExport)
       return injectDefaultExport({ source, fileLocation, options });
     const exportDefinition = defaultExport.getChildren()[2];
