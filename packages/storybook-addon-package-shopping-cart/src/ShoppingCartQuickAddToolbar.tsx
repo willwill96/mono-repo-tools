@@ -61,13 +61,13 @@ export default function ShoppingCartQuickAddToCart() {
             ...(before || []),
             { name: packageInfo.name, version: packageInfo.version },
           ]);
-        } else if (packageInfo.type === PackageInfoType.ALREADY_ADDED){
+        } else if (packageInfo.type === PackageInfoType.ALREADY_ADDED) {
           setPackages((before) =>
-          before.filter(
-            (subPkg) =>
-              subPkg.name !== packageInfo.name &&
-              subPkg.version !== packageInfo.version
-          )
+            before.filter(
+              (subPkg) =>
+                subPkg.name !== packageInfo.name &&
+                subPkg.version !== packageInfo.version
+            )
           );
         }
       }}
