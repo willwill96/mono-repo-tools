@@ -1,5 +1,16 @@
 # storybook-package-context-loader
 
+## 1.1.0
+
+### Minor Changes
+
+- 4f61a6a: Add partial webpack 4 support
+- 2bb58eb: Adds ability to bypass context injection
+
+### Patch Changes
+
+- 2bb58eb: Clean up dependency list
+
 ## 1.0.3
 
 ### Patch Changes

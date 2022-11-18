@@ -1,5 +1,18 @@
 # storybook-addon-package-shopping-cart
 
+## 0.1.0
+
+### Minor Changes
+
+- 2bb58eb: Add QuickAddToCartButton
+- 2bb58eb: Add ability to configure install script
+- 2bb58eb: Add ability to configure shopping cart colors
+
+### Patch Changes
+
+- Updated dependencies [2bb58eb]
+  - storybook-package-context-loader@1.1.0
+
 ## 0.0.6
 
 ### Patch Changes
