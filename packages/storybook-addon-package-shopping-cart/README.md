@@ -108,6 +108,54 @@ export const parameters = {
 
 ```
 
+## Parsing .md files
+
+### Webpack 5
+
+If you're using storybook with webpack 5, markdown files should be automatically set up to be parsed.
+
+If for some reason that's not working you can manually configure them as [source assets](https://webpack.js.org/guides/asset-modules/#source-assets) with the following:
+
+```
+  webpackFinal: (config) => {
+    ...
+    config.module.rules.push({
+      test: /\.md$/,
+      type: 'asset/source',
+    })
+    return config;
+  },
+```
+
+### Webpack 4
+
+If you're using storybook with webpack 4, you'll want to configure markdown files to be parsed via [raw-loader](https://v4.webpack.js.org/loaders/raw-loader/) with the following:
+
+```
+  webpackFinal: (config) => {
+    ...
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader'
+    })
+    return config;
+  },
+```
+
+## Disable context parsing for story
+
+If you want to disable package context loading for a story, you can pass `parameters.packageContext=null` to your component's story:
+
+```
+
+export default: {
+  parameters: {
+    packageContext: null
+  }
+}
+
+```
+
 ## storybook-package-context-loader options
 
 This addon uses [storybook-package-context-loader](https://www.npmjs.com/package/storybook-package-context-loader) to determine package context. By default `enableReadme` & `enableChangelog` are disabled to minimize build size. If you want to enable them, you can pass the options to the addon by adding the following to your package
