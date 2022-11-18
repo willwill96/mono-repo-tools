@@ -4,7 +4,7 @@ import { create } from '@storybook/theming';
 const theme = create({
     base: 'dark',
     appContentBg: 'white',
-    brandTitle: 'mono-repo-tools'
+    brandTitle: 'mono-repo-tools',
 })
 
 addons.setConfig({

@@ -9,9 +9,8 @@ import {
   PRIMARY_STORY,
   DocsContext,
 } from "@storybook/addon-docs";
-import { PkgJson } from "./types";
 
-const getInstallationInstructions = (pkgJson: PkgJson) => {
+const getInstallationInstructions = (pkgJson) => {
   if (!pkgJson || !pkgJson.name || pkgJson.private) return;
   return `\n\n# Package Installation Instructions\n\`\`\`\n\n\nnpm install ${pkgJson.name}\n\`\`\`\n`;
 };

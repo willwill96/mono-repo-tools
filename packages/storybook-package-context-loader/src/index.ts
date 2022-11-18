@@ -1,4 +1,5 @@
 import ts from "typescript";
+import { getOptions } from "loader-utils";
 import { getRequireString } from "./get-require-string";
 import type { LoaderOptions, WebpackLoaderContext } from "./types";
 
@@ -79,7 +80,8 @@ function transform(this: WebpackLoaderContext, source: string) {
         (f) =>
           ts.isExportAssignment(f) && f.getChildren()[1].getText() === "default"
       );
-    const options = this.getOptions ? this.getOptions() : {};
+    const options =
+      (this.getOptions ? this.getOptions() : getOptions(this)) || {};
     if (!defaultExport)
       return injectDefaultExport({ source, fileLocation, options });
     const exportDefinition = defaultExport.getChildren()[2];

@@ -25,16 +25,13 @@
   "devDependencies": {
     "@storybook/addon-docs": "^6.5.10",
     "@types/jest": "^29.0.0",
+    "@types/loader-utils": "^2.0.3",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "ts-jest": "^28.0.8"
   },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
-  },
   "dependencies": {
-    "@storybook/addon-docs": "^6",
+    "loader-utils": "^2.0.4",
     "typescript": "^4.8.2"
   }
 }

@@ -9,9 +9,3 @@ export interface WebpackLoaderContext {
   // getOptions will be undefined in webpack 4
   getOptions?: () => LoaderOptions;
 }
-
-export interface PkgJson {
-  name?: string;
-  version?: string;
-  private?: boolean;
-}
