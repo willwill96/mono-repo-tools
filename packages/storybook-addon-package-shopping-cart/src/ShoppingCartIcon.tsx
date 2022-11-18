@@ -10,6 +10,7 @@ export default function ShoppingCartIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ marginRight: 6 }}
     >
       <circle cx="9" cy="21" r="1" />
       <circle cx="20" cy="21" r="1" />

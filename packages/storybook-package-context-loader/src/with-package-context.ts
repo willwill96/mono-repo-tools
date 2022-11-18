@@ -10,6 +10,9 @@ const withPackageContext = (
   readme: any | undefined,
   changelog: any | undefined
 ) => {
+  if (config.parameters && config.parameters.packageContext === null) {
+    return config;
+  }
   return {
     title: pkgJson?.name && packageNameToTitle(pkgJson.name),
     ...config,

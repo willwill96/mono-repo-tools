@@ -7,7 +7,15 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "storybook-addon-package-shopping-cart"
+    {
+      name: "storybook-addon-package-shopping-cart",
+      options: {
+        packageContextLoaderOptions: {
+          enableReadme: true,
+          enableChangelog: true
+        },
+      }
+    }
   ],
   framework: "@storybook/react",
   core: {

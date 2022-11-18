@@ -1,5 +1,9 @@
 import { styled } from "@storybook/theming";
 import React, { useState, useEffect } from "react";
+import {
+  InstallablePackage,
+  PackageShoppingCartParameterConfig,
+} from "./types";
 
 const Title = styled.span`
   margin-top: 2px;
@@ -49,10 +53,15 @@ const copyTextToClipboard = async (text: string) => {
 
 export default function PackageInstallationInstructions({
   packages,
+  determineVersionToInstall,
 }: {
-  packages: string[];
+  packages: InstallablePackage[];
+  determineVersionToInstall?: PackageShoppingCartParameterConfig["determineVersionToInstall"];
 }) {
-  const text = `npm install ${packages.join(" ")}`;
+  const defaultTransform = (pkg: InstallablePackage) => `${pkg.name}@latest`;
+  const text = `npm install ${packages
+    .map(determineVersionToInstall || defaultTransform)
+    .join(" ")}`;
 
   const [copySuccessful, setCopySuccessful] = useState(false);
 

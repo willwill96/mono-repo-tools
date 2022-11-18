@@ -1,8 +1,15 @@
 import React from "react";
-import { Icons, Button, Span } from "@storybook/components";
+import { Icons } from "@storybook/components";
 import PackageInstallationInstructions from "./PackageInstallationInstructions";
 import { styled } from "@storybook/theming";
-import { PackageContext, PackageInfoType } from "./types";
+import {
+  CurrentPackageState,
+  InstallablePackage,
+  PackageContext,
+  PackageInfoType,
+  PackageShoppingCartParameterConfig,
+} from "./types";
+import { getCurrentPackageState } from "./get-current-package-state";
 
 const Root = styled.div`
     padding: 24px;
@@ -13,18 +20,66 @@ const Root = styled.div`
     max-width: 90vw;
   }}
 `;
-const AddRemoveButton = styled(Button)`
+
+const AddRemoveButton = styled.button<{
+  add?: boolean;
+  remove?: boolean;
+  disabled?: boolean;
+}>`
   font-size: 16px;
+  border-radius: 4px;
   @media (max-width: 768px) {
     font-size: 12px;
   }
   display: flex;
+  gap: 8px;
+  ${(props) =>
+    !props.disabled &&
+    `&:hover {
+    filter: brightness(0.85);
+  }`}
+  padding: 8px 12px;
   alignitems: center;
   justifycontent: center;
+  ${(props) => props.disabled && "opacity: 0.5;"}
+  ${(props) => (!props.disabled ? "cursor: pointer;" : "cursor: not-allowed;")}
+  color: ${(props) => {
+    if (props.disabled) {
+      return (
+        props.theme?.packageShoppingCart?.shoppingCart?.disabledButton
+          ?.textColor || props.theme.color.inverseText
+      );
+    } else if (props.add) {
+      return (
+        props.theme?.packageShoppingCart?.shoppingCart?.addButton?.textColor ||
+        props.theme.color.defaultText
+      );
+    }
+    return (
+      props.theme?.packageShoppingCart?.shoppingCart?.removeButton?.textColor ||
+      props.theme.color.defaultText
+    );
+  }};
+  background-color: ${(props) => {
+    if (props.disabled) {
+      return (
+        props.theme?.packageShoppingCart?.shoppingCart?.disabledButton
+          ?.bgColor || props.theme.color.tertiary
+      );
+    } else if (props.add) {
+      return (
+        props.theme?.packageShoppingCart?.shoppingCart?.addButton?.bgColor ||
+        props.theme.color.positive
+      );
+    }
+    return (
+      props.theme?.packageShoppingCart?.shoppingCart?.removeButton?.bgColor ||
+      props.theme.color.negative
+    );
+  }};
 `;
 
 const ButtonText = styled.span`
-  padding-top: 2px;
   padding-bottom: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -33,64 +88,54 @@ const ButtonText = styled.span`
   text-align: left;
 `;
 
-const ShoppingCartTitle = styled(Span)`
+const ShoppingCartTitle = styled.span`
   align-self: center;
   text-decoration: underline;
   font-weight: bold;
   font-size: 20px;
 `;
 
-const getAddPackageInfo = (
-  packageContext: PackageContext,
-  packages: string[]
-) => {
-  if (
-    !packageContext ||
-    !packageContext.pkgJson ||
-    !packageContext.pkgJson.name ||
-    packageContext.pkgJson.private
-  )
-    return {
-      text: "No related package found",
-      type: PackageInfoType.NO_PACKAGE,
-    };
-  const packageName = packageContext.pkgJson.name;
-  if (packages.includes(packageName))
-    return {
-      text: `Remove ${packageName}`,
-      type: PackageInfoType.ALREADY_ADDED,
-    };
-  return { text: `Add ${packageName}`, type: PackageInfoType.NOT_ADDED };
+const getCurrentButtonText = (state: CurrentPackageState) => {
+  if (state.type === PackageInfoType.NO_PACKAGE)
+    return "No Related Package Found";
+  else if (state.type === PackageInfoType.ALREADY_ADDED)
+    return `Remove ${state.name}`;
+  else return `Add ${state.name}`;
 };
 
 export default function ShoppingCartTooltip({
   packages,
   setPackages,
   packageContext,
+  determineVersionToInstall,
 }: {
-  packages: string[];
-  setPackages: (input: (before: string[]) => string[]) => void;
+  packages: InstallablePackage[];
+  setPackages: (
+    input: (before: InstallablePackage[]) => InstallablePackage[]
+  ) => void;
   packageContext: PackageContext;
+  determineVersionToInstall?: PackageShoppingCartParameterConfig["determineVersionToInstall"];
 }) {
-  const packageInfo = getAddPackageInfo(packageContext, packages);
+  const packageInfo = getCurrentPackageState(packageContext, packages);
   return (
     <Root>
       <AddRemoveButton
-        primary={packageInfo.type === PackageInfoType.NOT_ADDED}
-        secondary={packageInfo.type === PackageInfoType.ALREADY_ADDED}
-        tertiary={packageInfo.type === PackageInfoType.NO_PACKAGE}
+        add={packageInfo.type === PackageInfoType.NOT_ADDED}
+        remove={packageInfo.type === PackageInfoType.ALREADY_ADDED}
         disabled={packageInfo.type === PackageInfoType.NO_PACKAGE}
         onClick={() => {
           if (packageInfo.type === PackageInfoType.NOT_ADDED) {
             setPackages((before) => [
               // Sometimes before is null downstream
               ...(before || []),
-              (packageContext as any).pkgJson.name,
+              { name: packageInfo.name, version: packageInfo.version },
             ]);
-          } else {
+          } else if (packageInfo.type === PackageInfoType.ALREADY_ADDED) {
             setPackages((before) =>
               before.filter(
-                (pkg) => pkg !== (packageContext as any).pkgJson.name
+                (subPkg) =>
+                  subPkg.name !== packageInfo.name &&
+                  subPkg.version !== packageInfo.version
               )
             );
           }
@@ -108,18 +153,21 @@ export default function ShoppingCartTooltip({
               : "add"
           }
         />
-        <ButtonText>{packageInfo.text}</ButtonText>
+        <ButtonText>{getCurrentButtonText(packageInfo)}</ButtonText>
       </AddRemoveButton>
-      <PackageInstallationInstructions packages={packages} />
-      <ShoppingCartTitle style={{}}>Package Shopping Cart</ShoppingCartTitle>
+      <PackageInstallationInstructions
+        packages={packages}
+        determineVersionToInstall={determineVersionToInstall}
+      />
+      <ShoppingCartTitle>Package Shopping Cart</ShoppingCartTitle>
       {packages.length === 0 && (
-        <Span style={{ alignSelf: "center" }}>No Packages in Cart</Span>
+        <span style={{ alignSelf: "center" }}>No Packages in Cart</span>
       )}
       {packages.map((pkg) => {
         return (
           <AddRemoveButton
-            key={pkg}
-            secondary
+            key={`${pkg.name}@${pkg.version}`}
+            remove
             onClick={() => {
               // using setTimeout because Storybook Tooltip propagates the click after clicking remove
               // and subsequently closes the tooltip
@@ -127,7 +175,11 @@ export default function ShoppingCartTooltip({
               setTimeout(
                 () =>
                   setPackages((before) =>
-                    before.filter((subPkg) => subPkg !== pkg)
+                    before.filter(
+                      (subPkg) =>
+                        subPkg.name !== pkg.name &&
+                        subPkg.version !== pkg.version
+                    )
                   ),
                 0
               );
@@ -142,7 +194,7 @@ export default function ShoppingCartTooltip({
               }}
               icon="subtract"
             />
-            <ButtonText>Remove {pkg}</ButtonText>
+            <ButtonText>Remove {pkg.name}</ButtonText>
           </AddRemoveButton>
         );
       })}

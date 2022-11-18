@@ -21,4 +21,7 @@ export const Introduction = () => (
 );
 export default {
   title: "Introduction",
+  parameters: {
+    packageContext: null,
+  },
 };

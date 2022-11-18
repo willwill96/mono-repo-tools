@@ -32,19 +32,6 @@ Add the webpack loader to your `.storybook/main.js` file under `webpackFinal`:
   },
 ```
 
-## Add Base Docs page to preview.js
-
-This package bundles along a lightweight react component to display package information on the `Docs` page in storybook using the injected parameter. In order to take advantage, replace your docs page in the `.storybook/preview.js` file:
-
-```
-import DocsPage from 'storybook-package-context-loader/dist/package-context-docs-page'
-export const parameters = {
-  docs: {
-    page: DocsPage,
-  },
-};
-```
-
 ## Configuration
 
 You can optionally disable the loader from including any of the parsed files by passing options to the loader:
@@ -64,4 +51,50 @@ You can optionally disable the loader from including any of the parsed files by 
     });
     return config;
   },
+```
+
+## Parsing .md files
+
+### Webpack 5
+
+If you're using storybook with webpack 5, markdown files should be automatically set up to be parsed.
+
+If for some reason that's not working you can manually configure them as [source assets](https://webpack.js.org/guides/asset-modules/#source-assets) with the following:
+
+```
+  webpackFinal: (config) => {
+    ...
+    config.module.rules.push({
+      test: /\.md$/,
+      type: 'asset/source',
+    })
+    return config;
+  },
+```
+
+### Webpack 4
+
+If you're using storybook with webpack 4, you'll want to configure markdown files to be parsed via [raw-loader](https://v4.webpack.js.org/loaders/raw-loader/) with the following:
+
+```
+  webpackFinal: (config) => {
+    ...
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader'
+    })
+    return config;
+  },
+```
+
+## Disable context parsing for story
+
+If you want to disable package context loading for a story, you can pass `parameters.packageContext=null` to your component's story:
+
+```
+export default: {
+  parameters: {
+    packageContext: null
+  }
+}
 ```
