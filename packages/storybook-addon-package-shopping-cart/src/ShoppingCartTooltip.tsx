@@ -12,13 +12,18 @@ import {
 import { getCurrentPackageState } from "./get-current-package-state";
 
 const Root = styled.div`
+background-color: ${(props) =>
+  props.theme?.packageShoppingCart?.tooltip?.backgroundColor ||
+  (props?.theme?.background.app)};
+color: ${(props) =>
+  props.theme?.packageShoppingCart?.tooltip?.textColor ||
+  props.theme.color.defaultText};
     padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 600px;
     max-width: 90vw;
-  }}
 `;
 
 const AddRemoveButton = styled.button<{
@@ -31,6 +36,7 @@ const AddRemoveButton = styled.button<{
   @media (max-width: 768px) {
     font-size: 12px;
   }
+  border-style: none;
   display: flex;
   gap: 8px;
   ${(props) =>
@@ -39,8 +45,8 @@ const AddRemoveButton = styled.button<{
     filter: brightness(0.85);
   }`}
   padding: 8px 12px;
-  alignitems: center;
-  justifycontent: center;
+  align-items: center;
+  justify-content: center;
   ${(props) => props.disabled && "opacity: 0.5;"}
   ${(props) => (!props.disabled ? "cursor: pointer;" : "cursor: not-allowed;")}
   color: ${(props) => {

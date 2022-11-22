@@ -30,6 +30,12 @@ export type CurrentPackageState =
     };
 
 export type PackageShoppingCartExtendedTheme = {
+  tooltip: {
+    /* Default: props.theme.background.app */
+    backgroundColor: string;
+    /* Default: props.theme.color.defaultText */
+    textColor: string;
+  },
   quickAddButton: {
     /* Default: props.theme.color.positive */
     addIconColor: string;

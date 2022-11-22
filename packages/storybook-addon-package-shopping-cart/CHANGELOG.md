@@ -1,5 +1,11 @@
 # storybook-addon-package-shopping-cart
 
+## 0.2.0
+
+### Minor Changes
+
+- f48a0f4: Add ability to configure tooltip background color
+
 ## 0.1.0
 
 ### Minor Changes
