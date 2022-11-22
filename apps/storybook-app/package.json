@@ -36,7 +36,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook-package-context-loader": "^1.1.0",
-    "storybook-addon-package-shopping-cart": "^0.1.0",
+    "storybook-addon-package-shopping-cart": "^0.2.0",
     "webpack": "^5.74.0"
   },
   "scripts": {
