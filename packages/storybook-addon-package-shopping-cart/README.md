@@ -51,7 +51,13 @@ const theme = create({
     appContentBg: 'white',
     brandTitle: 'mono-repo-tools',
     packageShoppingCart: {
-      shoppingCart: {1
+      tooltip: {
+        /* Default: props.theme.background.app */
+        backgroundColor: 'blue',
+        /* Default: props.theme.color.defaultText */
+        textColor: 'green'
+      }
+      shoppingCart: {
         badge: {
           /* Default: props.theme.color.primary */
           bgColor: 'blue',
