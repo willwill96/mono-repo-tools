@@ -12,7 +12,8 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "changeset-conventional": "changeset-conventional"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.4",
@@ -20,6 +21,7 @@
     "@storybook/components": "^6.5.10",
     "@storybook/theming": "^6.5.10",
     "@types/jest": "^29.0.0",
+    "changeset-conventional-commit": "^0.0.0",
     "eslint": "^8.23.0",
     "eslint-config-custom": "*",
     "jest": "^28.1.3",

@@ -1,0 +1,39 @@
+{
+  "name": "changeset-conventional-commit",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Changeset generator for conventional commits",
+  "author": "William Will @willwill96",
+  "homepage": "https://github.com/willwill96/mono-repo-tools",
+  "license": "MIT",
+  "bin": {
+    "changeset-conventional": "./bin.js"
+  },
+  "main": "dist/index.js",
+  "repository": {
+    "type": "ssh",
+    "url": "git@github.com:willwill96/mono-repo-tools.git"
+  },
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "prebuild:watch": "rm -rf dist",
+    "build:watch": "tsc --watch",
+    "prepack": "npm run build"
+  },
+  "bugs": "https://github.com/willwill96/mono-repo-tools/issues",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "tsconfig": "*",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@changesets/changelog-git": "^0.1.14",
+    "@changesets/config": "^2.3.0",
+    "@changesets/write": "^0.2.3",
+    "@manypkg/get-packages": "^1"
+  }
+}
