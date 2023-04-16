@@ -8,7 +8,7 @@ function nonEmpty(child: ts.Node) {
 }
 
 const importDeclaration =
-  'var withPackageContext = require("storybook-package-context-loader/dist/with-package-context").withPackageContext\n';
+  'import {withPackageContext} from "storybook-package-context-loader/src/with-package-context"\n';
 
 interface InjectFnOptions {
   source: string;
@@ -21,10 +21,14 @@ function injectDefaultExport({
   fileLocation,
   options,
 }: InjectFnOptions) {
-  const requireString = getRequireString(fileLocation, options);
+  const {requireString, imports} = getRequireString(fileLocation, options);
   if (!requireString) return source;
   return importDeclaration
-    .concat(source)
+    .concat(source).concat(...Object.keys(imports).map(key=>{
+      console.log('import', imports[key])
+      console.log('key', key)
+      return `import ${key} from "${imports[key]}"\n`
+    }))
     .concat(`\nexport default withPackageContext({}, ${requireString})`);
 }
 
@@ -34,7 +38,7 @@ function injectExistingDefaultExport({
   exportDefinition,
   options,
 }: InjectFnOptions & { exportDefinition: ts.Node }) {
-  const requireString = getRequireString(fileLocation, options);
+  const {requireString, imports} = getRequireString(fileLocation, options);
   if (!requireString) return source;
   let newSource = source;
   const start = exportDefinition.getStart();
@@ -46,7 +50,11 @@ function injectExistingDefaultExport({
   newSource =
     newSource.slice(0, start) + "withPackageContext(" + newSource.slice(start);
 
-  return importDeclaration.concat(newSource);
+  return importDeclaration.concat(...Object.keys(imports).map(key=>{
+    console.log('import', imports[key])
+    console.log('key', key)
+    return `import ${key} from "${imports[key]}"\n`
+  })).concat(newSource);
 }
 
 function getScriptKind(fileName: string) {

@@ -16,9 +16,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.4",
-    "@storybook/addons": "^6.5.10",
-    "@storybook/components": "^6.5.10",
-    "@storybook/theming": "^6.5.10",
+    "@storybook/addons": "^7",
+    "@storybook/components": "^7",
+    "@storybook/react-vite": "^7.0.5",
+    "@storybook/theming": "^7",
     "@types/jest": "^29.0.0",
     "eslint": "^8.23.0",
     "eslint-config-custom": "*",

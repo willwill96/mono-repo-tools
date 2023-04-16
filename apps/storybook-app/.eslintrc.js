@@ -1,4 +1,3 @@
 module.exports = {
-    extends: ["custom"],
+  extends: ["custom", "plugin:storybook/recommended"]
 };
-  

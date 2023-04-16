@@ -10,6 +10,7 @@ const withPackageContext = (
   readme: any | undefined,
   changelog: any | undefined
 ) => {
+  console.log('config', config)
   if (config.parameters && config.parameters.packageContext === null) {
     return config;
   }

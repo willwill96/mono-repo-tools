@@ -11,21 +11,21 @@ function managerEntries(entry = []) {
 
 module.exports = {
   managerEntries,
-  webpackFinal: async (webpackConfig: any, options: AddonOptions = {}) => {
-    webpackConfig.module.rules.push({
-      test: /\.stories\.(t|j)sx?$/,
-      use: [
-        {
-          loader: require.resolve("storybook-package-context-loader"),
-          options: {
-            enableReadme: false,
-            enablePkgJson: true,
-            enableChangelog: false,
-            ...(options.packageContextLoaderOptions || {}),
-          },
-        },
-      ],
-    });
-    return webpackConfig;
-  },
+  // webpackFinal: async (webpackConfig: any, options: AddonOptions = {}) => {
+  //   webpackConfig.module.rules.push({
+  //     test: /\.stories\.(t|j)sx?$/,
+  //     use: [
+  //       {
+  //         loader: require.resolve("storybook-package-context-loader"),
+  //         options: {
+  //           enableReadme: false,
+  //           enablePkgJson: true,
+  //           enableChangelog: false,
+  //           ...(options.packageContextLoaderOptions || {}),
+  //         },
+  //       },
+  //     ],
+  //   });
+  //   return webpackConfig;
+  // },
 };
