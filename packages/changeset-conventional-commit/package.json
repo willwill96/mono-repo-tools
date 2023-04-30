@@ -22,12 +22,14 @@
     "build": "tsc",
     "prebuild:watch": "rm -rf dist",
     "build:watch": "tsc --watch",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "test": "jest"
   },
   "bugs": "https://github.com/willwill96/mono-repo-tools/issues",
   "types": "dist/index.d.ts",
   "devDependencies": {
     "tsconfig": "*",
+    "ts-jest": "^28.0.8",
     "typescript": "^4.9.5"
   },
   "dependencies": {
