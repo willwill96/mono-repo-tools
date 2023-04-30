@@ -10,8 +10,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "prettier --check \"**/*.{ts,tsx,json,md}\" && turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "test": "turbo run test",
     "changeset-conventional": "changeset-conventional"
   },
