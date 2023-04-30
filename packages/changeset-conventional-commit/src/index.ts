@@ -7,7 +7,6 @@ import {
   associateCommitsToConventionalCommitMessages,
   conventionalMessagesWithCommitsToChangesets,
   getCommitsSinceRef,
-  gitFetch,
 } from "./utils";
 
 const CHANGESET_CONFIG_LOCATION = path.join(".changeset", "config.json");
@@ -39,8 +38,8 @@ const conventionalCommitChangeset = (
     fs.readFileSync(path.join(cwd, CHANGESET_CONFIG_LOCATION)).toString()
   );
   const { baseBranch = "main" } = changesetConfig;
-  gitFetch(baseBranch);
-  const commitsSinceBase = getCommitsSinceRef(`origin/${baseBranch}`);
+
+  const commitsSinceBase = getCommitsSinceRef(baseBranch);
 
   const commitsWithMessages = commitsSinceBase.map((commitHash) => ({
     commitHash,

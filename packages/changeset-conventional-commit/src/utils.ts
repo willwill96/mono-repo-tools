@@ -154,8 +154,21 @@ export const gitFetch = (branch: string) => {
   execSync(`git fetch origin ${branch}`);
 };
 
+export const getCurrentBranch = () => {
+  return execSync("git rev-parse --abbrev-ref HEAD").toString().trim();
+};
+
+// This could be running on the main branch or on a branch that was created from the main branch.
+// If this is running on the main branch, we want to get all commits since the last release.
+// If this is running on a branch that was created from the main branch, we want to get all commits since the branch was created.
 export const getCommitsSinceRef = (branch: string) => {
-  return execSync(`git rev-list --ancestry-path ${branch}...HEAD`)
+  gitFetch(branch);
+  const currentBranch = getCurrentBranch();
+  const sinceRef =
+    currentBranch === branch
+      ? execSync("git describe --tags --abbrev=0").toString()
+      : `origin/${branch}`;
+  return execSync(`git rev-list --ancestry-path ${sinceRef}...HEAD`)
     .toString()
     .split("\n")
     .filter(Boolean)

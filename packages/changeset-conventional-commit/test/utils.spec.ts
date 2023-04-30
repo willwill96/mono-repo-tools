@@ -1,9 +1,11 @@
 import {
   associateCommitsToConventionalCommitMessages,
   getRepoRoot,
+  gitFetch,
   isBreakingChange,
   isConventionalCommit,
 } from "../src/utils";
+
 describe("is-breaking", () => {
   it("correctly identifies a breaking change", () => {
     expect(isBreakingChange("feat!: a change")).toEqual(true);
@@ -160,5 +162,11 @@ describe("associate-commits-to-conventional-commit-messages", () => {
 describe("get-repo-root", () => {
   it("correctly gets the repo root", () => {
     expect(getRepoRoot().endsWith("mono-repo-tools")).toBe(true);
+  });
+});
+
+describe("git-fetch", () => {
+  it("correctly fetches", () => {
+    expect(() => gitFetch("master")).not.toThrow();
   });
 });
