@@ -35,7 +35,7 @@ export type PackageShoppingCartExtendedTheme = {
     backgroundColor: string;
     /* Default: props.theme.color.defaultText */
     textColor: string;
-  },
+  };
   quickAddButton: {
     /* Default: props.theme.color.positive */
     addIconColor: string;

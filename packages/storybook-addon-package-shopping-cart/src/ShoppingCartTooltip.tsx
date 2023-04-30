@@ -12,18 +12,18 @@ import {
 import { getCurrentPackageState } from "./get-current-package-state";
 
 const Root = styled.div`
-background-color: ${(props) =>
-  props.theme?.packageShoppingCart?.tooltip?.backgroundColor ||
-  (props?.theme?.background.app)};
-color: ${(props) =>
-  props.theme?.packageShoppingCart?.tooltip?.textColor ||
-  props.theme.color.defaultText};
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 600px;
-    max-width: 90vw;
+  background-color: ${(props) =>
+    props.theme?.packageShoppingCart?.tooltip?.backgroundColor ||
+    props?.theme?.background.app};
+  color: ${(props) =>
+    props.theme?.packageShoppingCart?.tooltip?.textColor ||
+    props.theme.color.defaultText};
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 600px;
+  max-width: 90vw;
 `;
 
 const AddRemoveButton = styled.button<{

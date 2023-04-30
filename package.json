@@ -10,16 +10,18 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo run test"
+    "lint": "prettier --check \"**/*.{ts,tsx,json,md}\" && turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "test": "turbo run test",
+    "changeset-conventional": "changeset-conventional"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.4",
     "@storybook/addons": "^6.5.10",
     "@storybook/components": "^6.5.10",
     "@storybook/theming": "^6.5.10",
-    "@types/jest": "^29.0.0",
+    "@types/jest": "^29.5.1",
+    "changeset-conventional-commit": "^0.0.0",
     "eslint": "^8.23.0",
     "eslint-config-custom": "*",
     "jest": "^28.1.3",
