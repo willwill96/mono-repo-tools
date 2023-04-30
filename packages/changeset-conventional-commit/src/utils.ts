@@ -113,7 +113,7 @@ export const conventionalMessagesWithCommitsToChangesets = (
   options: { ignoredFiles?: (string | RegExp)[]; packages: ManyPkgPackage[] }
 ) => {
   const {
-    ignoredFiles: [],
+    ignoredFiles = [],
     packages,
   } = options;
   return conventionalMessagesToCommits
@@ -122,7 +122,7 @@ export const conventionalMessagesWithCommitsToChangesets = (
         from: entry.commitHashes[0],
         to: entry.commitHashes[entry.commitHashes.length - 1],
       }).filter((file) => {
-        return options.ignoredFiles.every(
+        return ignoredFiles.every(
           (ignoredPattern) => !file.match(ignoredPattern)
         );
       });
@@ -164,10 +164,15 @@ export const getCurrentBranch = () => {
 export const getCommitsSinceRef = (branch: string) => {
   gitFetch(branch);
   const currentBranch = getCurrentBranch();
-  const sinceRef =
-    currentBranch === branch
-      ? execSync("git describe --tags --abbrev=0").toString()
-      : `origin/${branch}`;
+  let sinceRef = `origin/${branch}`
+  if (currentBranch === branch) {
+    try {
+      sinceRef = execSync("git describe --tags --abbrev=0").toString()
+    } catch(e) {
+      console.log("No git tags found, using repo's first commit for automated change detection. Note: this may take a while.")
+      sinceRef = execSync("git rev-list --max-parents=0 HEAD").toString()
+    }
+  }
   return execSync(`git rev-list --ancestry-path ${sinceRef}...HEAD`)
     .toString()
     .split("\n")
